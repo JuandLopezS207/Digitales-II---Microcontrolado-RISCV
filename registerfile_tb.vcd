@@ -1,0 +1,300 @@
+$date
+	Wed Sep  9 09:43:41 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module registerfile_tb $end
+$var wire 32 ! rd_data2 [31:0] $end
+$var wire 32 " rd_data1 [31:0] $end
+$var reg 1 # clk $end
+$var reg 5 $ rd_index1 [4:0] $end
+$var reg 5 % rd_index2 [4:0] $end
+$var reg 32 & wr_data [31:0] $end
+$var reg 1 ' wr_en $end
+$var reg 5 ( wr_index [4:0] $end
+$var integer 32 ) i [31:0] $end
+$scope module uut $end
+$var wire 1 # clk $end
+$var wire 5 * rd_index1 [4:0] $end
+$var wire 5 + rd_index2 [4:0] $end
+$var wire 32 , wr_data [31:0] $end
+$var wire 1 ' wr_en $end
+$var wire 5 - wr_index [4:0] $end
+$var wire 32 . rd_data2 [31:0] $end
+$var wire 32 / rd_data1 [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 0 \mem[0] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 1 \mem[1] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 2 \mem[2] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 3 \mem[3] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 4 \mem[4] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 5 \mem[5] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 6 \mem[6] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 7 \mem[7] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 8 \mem[8] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 9 \mem[9] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 : \mem[10] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 ; \mem[11] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 < \mem[12] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 = \mem[13] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 > \mem[14] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 ? \mem[15] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 @ \mem[16] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 A \mem[17] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 B \mem[18] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 C \mem[19] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 D \mem[20] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 E \mem[21] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 F \mem[22] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 G \mem[23] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 H \mem[24] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 I \mem[25] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 J \mem[26] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 K \mem[27] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 L \mem[28] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 M \mem[29] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 N \mem[30] [31:0] $end
+$upscope $end
+$upscope $end
+$scope module registerfile_tb $end
+$scope module uut $end
+$var reg 32 O \mem[31] [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx O
+bx N
+bx M
+bx L
+bx K
+bx J
+bx I
+bx H
+bx G
+bx F
+bx E
+bx D
+bx C
+bx B
+bx A
+bx @
+bx ?
+bx >
+bx =
+bx <
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+bx 0
+b0 /
+b0 .
+b0 -
+b0 ,
+b0 +
+b0 *
+b100000 )
+b0 (
+0'
+b0 &
+b0 %
+b0 $
+0#
+b0 "
+b0 !
+$end
+#5000
+1#
+#10000
+0#
+b10101010101010101011101110111011 &
+b10101010101010101011101110111011 ,
+b101 (
+b101 -
+1'
+#15000
+b10101010101010101011101110111011 5
+1#
+#20000
+0#
+b10001000100010010001000100010 &
+b10001000100010010001000100010 ,
+b1010 (
+b1010 -
+#25000
+b10001000100010010001000100010 :
+1#
+#30000
+0#
+b11111111111111111111111111111111 &
+b11111111111111111111111111111111 ,
+b0 (
+b0 -
+#35000
+1#
+#40000
+b10001000100010010001000100010 !
+b10001000100010010001000100010 .
+b10101010101010101011101110111011 "
+b10101010101010101011101110111011 /
+0#
+b1010 %
+b1010 +
+b101 $
+b101 *
+0'
+#45000
+1#
+#50000
+b0 "
+b0 /
+0#
+b0 $
+b0 *
+#55000
+1#
+#60000
+0#
+#65000
+1#
+#70000
+0#
