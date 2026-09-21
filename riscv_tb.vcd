@@ -1,0 +1,584 @@
+$date
+	Tue Sep 22 00:42:45 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module riscv_tb $end
+$var reg 1 ! clk $end
+$var reg 32 " instr [31:0] $end
+$var reg 1 # rst $end
+$var integer 32 $ i [31:0] $end
+$scope module uut $end
+$var wire 32 % alu_a [31:0] $end
+$var wire 1 ! clk $end
+$var wire 1 & imm_valid $end
+$var wire 32 ' instr [31:0] $end
+$var wire 1 ( is_i_instr $end
+$var wire 1 ) is_u_instr $end
+$var wire 1 # rst $end
+$var wire 1 * wr_en $end
+$var wire 32 + src2_value [31:0] $end
+$var wire 32 , src1_value [31:0] $end
+$var wire 5 - rs2 [4:0] $end
+$var wire 5 . rs1 [4:0] $end
+$var wire 5 / rd [4:0] $end
+$var wire 7 0 opcode [6:0] $end
+$var wire 1 1 is_xori $end
+$var wire 1 2 is_xor $end
+$var wire 1 3 is_valid $end
+$var wire 1 4 is_sub $end
+$var wire 1 5 is_s_instr $end
+$var wire 1 6 is_r_instr $end
+$var wire 1 7 is_ori $end
+$var wire 1 8 is_or $end
+$var wire 1 9 is_j_instr $end
+$var wire 1 : is_b_instr $end
+$var wire 1 ; is_andi $end
+$var wire 1 < is_and $end
+$var wire 1 = is_addi $end
+$var wire 1 > is_add $end
+$var wire 32 ? imm [31:0] $end
+$var wire 7 @ funct7 [6:0] $end
+$var wire 3 A funct3 [2:0] $end
+$var wire 10 B dec_bits2 [9:0] $end
+$var wire 11 C dec_bits [10:0] $end
+$var wire 32 D alu_out [31:0] $end
+$var wire 3 E alu_op [2:0] $end
+$var wire 32 F alu_b [31:0] $end
+$var reg 32 G IR [31:0] $end
+$scope module rv_alu $end
+$var wire 32 H A [31:0] $end
+$var wire 32 I B [31:0] $end
+$var wire 3 J op [2:0] $end
+$var wire 32 K ALU_out [31:0] $end
+$upscope $end
+$scope module rv_rf $end
+$var wire 1 ! clk $end
+$var wire 5 L rd_index1 [4:0] $end
+$var wire 5 M rd_index2 [4:0] $end
+$var wire 32 N wr_data [31:0] $end
+$var wire 1 * wr_en $end
+$var wire 5 O wr_index [4:0] $end
+$var wire 32 P rd_data2 [31:0] $end
+$var wire 32 Q rd_data1 [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 R \mem[0] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 S \mem[1] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 T \mem[2] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 U \mem[3] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 V \mem[4] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 W \mem[5] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 X \mem[6] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 Y \mem[7] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 Z \mem[8] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 [ \mem[9] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 \ \mem[10] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 ] \mem[11] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 ^ \mem[12] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 _ \mem[13] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 ` \mem[14] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 a \mem[15] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 b \mem[16] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 c \mem[17] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 d \mem[18] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 e \mem[19] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 f \mem[20] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 g \mem[21] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 h \mem[22] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 i \mem[23] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 j \mem[24] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 k \mem[25] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 l \mem[26] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 m \mem[27] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 n \mem[28] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 o \mem[29] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 p \mem[30] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module riscv_tb $end
+$scope module uut $end
+$scope module rv_rf $end
+$var reg 32 q \mem[31] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx q
+bx p
+bx o
+bx n
+bx m
+bx l
+bx k
+bx j
+bx i
+bx h
+bx g
+bx f
+bx e
+bx d
+bx c
+bx b
+bx a
+bx `
+bx _
+bx ^
+bx ]
+bx \
+bx [
+bx Z
+bx Y
+bx X
+bx W
+bx V
+bx U
+bx T
+bx S
+bx R
+bx Q
+bx P
+bx O
+bx N
+bx M
+bx L
+bx K
+bx J
+bx I
+bx H
+bx G
+bx F
+bx E
+bx D
+bx C
+bx B
+bx A
+bx @
+bx ?
+x>
+x=
+x<
+x;
+x:
+x9
+x8
+x7
+x6
+x5
+x4
+x3
+x2
+x1
+bx 0
+bx /
+bx .
+bx -
+bx ,
+bx +
+x*
+x)
+x(
+b0 '
+x&
+bx %
+b100000 $
+1#
+b0 "
+0!
+$end
+#5000
+1&
+b0 D
+b0 K
+b0 N
+b0 E
+b0 J
+1(
+b0 F
+b0 I
+0*
+0)
+b0 ?
+b0 +
+b0 P
+b0 %
+b0 H
+b0 ,
+b0 Q
+03
+06
+05
+0:
+09
+0>
+04
+02
+08
+0<
+b0 C
+0=
+01
+07
+0;
+b0 B
+b0 @
+b0 -
+b0 M
+b0 .
+b0 L
+b0 A
+b0 /
+b0 O
+b0 0
+b0 G
+1!
+#10000
+0!
+0#
+#15000
+1!
+#20000
+0!
+b101000000000001010010011 "
+b101000000000001010010011 '
+#25000
+b1010 D
+b1010 K
+b1010 N
+b1010 F
+b1010 I
+1*
+b1010 ?
+bx +
+bx P
+13
+b10011 C
+1=
+b10011 B
+b1010 -
+b1010 M
+b101 /
+b101 O
+b10011 0
+b101000000000001010010011 G
+1!
+#30000
+0!
+b1010000101000001100010011 "
+b1010000101000001100010011 '
+#35000
+b10100 F
+b10100 I
+b11110 D
+b11110 K
+b11110 N
+b10100 ?
+b1010 %
+b1010 H
+b1010 ,
+b1010 Q
+b10100 -
+b10100 M
+b101 .
+b101 L
+b110 /
+b110 O
+b1010000101000001100010011 G
+b1010 W
+1!
+#40000
+0!
+b11000101000001110110011 "
+b11000101000001110110011 '
+#45000
+0&
+b101000 D
+b101000 K
+b101000 N
+0(
+b11110 F
+b11110 I
+b11110 +
+b11110 P
+b0 ?
+16
+1>
+b110011 C
+0=
+b110011 B
+b110 -
+b110 M
+b111 /
+b111 O
+b110011 0
+b11110 X
+b11000101000001110110011 G
+1!
+#50000
+0!
+b10100101110010000010011 "
+b10100101110010000010011 '
+#55000
+1&
+b11 E
+b11 J
+1*
+b1111 D
+b1111 K
+b1111 N
+b101 ?
+b101 F
+b101 I
+1(
+b1010 +
+b1010 P
+06
+0>
+b1100010011 C
+17
+b1100010011 B
+b101 -
+b101 M
+b110 A
+b1000 /
+b1000 O
+b10011 0
+b10100101110010000010011 G
+b101000 Y
+1!
+#60000
+0!
+b1000000010100110000010010110011 "
+b1000000010100110000010010110011 '
+#65000
+0&
+b10100 D
+b10100 K
+b10100 N
+0(
+b1 E
+b1 J
+b1010 F
+b1010 I
+14
+b11110 %
+b11110 H
+b11110 ,
+b11110 Q
+b0 ?
+16
+0>
+b10000110011 C
+07
+b110011 B
+b100000 @
+b110 .
+b110 L
+b0 A
+b1001 /
+b1001 O
+b110011 0
+b1111 Z
+b1000000010100110000010010110011 G
+1!
+#70000
+0!
+#75000
+b10100 [
+1!
+#80000
+0!
