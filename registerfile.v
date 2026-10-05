@@ -1,28 +1,32 @@
-module registerfile(
-    input clk,
-    input wr_en,
-    input [4:0] wr_index,
-    input [31:0] wr_data,
-    input [4:0] rd_index1,
-    input [4:0] rd_index2,
-    output [31:0] rd_data1,
-    output [31:0] rd_data2
+module registerfile (
+    input wire clk,
+    input wire we,
+    input wire [4:0] waddr,
+    input wire [4:0] raddr1,
+    input wire [4:0] raddr2,
+    input wire [31:0] wdata,
+    output wire [31:0] rdata1,
+    output wire [31:0] rdata2
 );
-
-    // Memoria de 32 posiciones de 32 bits
     reg [31:0] mem [0:31];
 
-    // Lógica de lectura combinacional (dual-port)
-    // El registro x0 (dirección 0) siempre se lee cero
-    assign rd_data1 = (rd_index1 == 5'b00000) ? 32'd0 : mem[rd_index1];
-    assign rd_data2 = (rd_index2 == 5'b00000) ? 32'd0 : mem[rd_index2];
-
-    // Lógica de escritura secuencial / sincrónica
-    always @(posedge clk) begin
-        // Si la escritura está habilitada y no se intenta escribir en x0
-        if (wr_en && (wr_index != 5'b00000)) begin
-            mem[wr_index] <= wr_data;
+    // Inicialización a 0 de todos los registros para evitar x (rojo) en la simulación
+    integer k;
+    initial begin
+        for (k = 0; k < 32; k = k + 1) begin
+            mem[k] = 32'd0;
         end
     end
+
+    // Escritura sincrónica (el registro x0 siempre se mantiene en 0)
+    always @(posedge clk) begin
+        if (we && (waddr != 5'd0)) begin
+            mem[waddr] <= wdata;
+        end
+    end
+
+    // Lectura combinacional
+    assign rdata1 = (raddr1 == 5'd0) ? 32'd0 : mem[raddr1];
+    assign rdata2 = (raddr2 == 5'd0) ? 32'd0 : mem[raddr2];
 
 endmodule
