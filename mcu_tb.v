@@ -17,9 +17,13 @@ module tb_mcu;
         $dumpfile("tb_mcu.vcd");
         $dumpvars(0, tb_mcu);
 
-        // Volcar las 32 posiciones del banco de registros
+        // Volcar las 32 posiciones del banco de registros para verlas en GTKWave
         for (i = 0; i < 32; i = i + 1)
             $dumpvars(0, mcuuq.cpu.rf.mem[i]);
+            
+        // NUEVO: Monitorear en consola las señales clave del proceso de fetch y ejecución
+        $monitor("Tiempo=%0t | rst=%b | PC=%h | Instruccion leida=%h | Registro x12=%h", 
+                 $time, rst, mcuuq.cpu.pc, mcuuq.IMEM.data, mcuuq.cpu.rf.mem[12]);
 
         clk = 0;
         rst = 1;
@@ -27,8 +31,7 @@ module tb_mcu;
         #93;
         rst = 0; // Se libera el reset a los 93ns
 
-        #240; // Simulación durante 60 ciclos de reloj
-        #16;
+        #500; // Damos suficiente tiempo para que se ejecuten todas las instrucciones
         $finish;
     end
 
