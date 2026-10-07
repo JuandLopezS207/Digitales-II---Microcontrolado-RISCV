@@ -1,4 +1,5 @@
 module rom4096x32 (
+    input wire clk,         // Añadida entrada de reloj para hacerla sincrónica
     input wire [11:0] addr, 
     output reg [31:0] data  
 );
@@ -11,7 +12,8 @@ module rom4096x32 (
         $readmemh("test_program.hex", mem);
     end
 
-    always @(*) begin
-        data = mem[addr];
+    // Lectura sincrónica (dependiente del reloj)
+    always @(posedge clk) begin
+        data <= mem[addr];
     end
 endmodule
