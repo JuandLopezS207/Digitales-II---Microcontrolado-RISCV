@@ -12,7 +12,7 @@ module riscv (
 
 
     // 1. Contador de Programa (PC) y Control de Estados (4 ciclos de reloj)
-  
+
     reg [31:0] pc;
     assign iaddr = pc;
 
@@ -34,11 +34,25 @@ module riscv (
         end
     end
 
+    // Registro que almacena PC+4 (Guía 6)
+    // Se calcula en el ciclo decode, cuando el PC ya es estable. Es el valor que
+    // JAL y JALR guardan en rd (dirección de retorno). Se necesita un registro porque
+    // en el ciclo execute2 (cuando se escribe el RF) el PC ya se está actualizando.
+    reg [31:0] pc_plus_4;
+    always @(posedge clk) begin
+        if (rst) pc_plus_4 <= 32'd0;
+        else if (state_decode) pc_plus_4 <= pc + 32'd4;
+    end
+
     // Registro de Instrucción (IR)
+    // La IMEM es sincrónica: la instrucción del nuevo PC solo está disponible a la salida de la
+    // memoria un ciclo DESPUÉS del ciclo fetch. Por eso el IR se carga en decode. Si se cargara
+    // en fetch, el IR recibiría la instrucción anterior y los saltos (JAL/JALR/branches)
+    // quedarían desfasados 4 bytes.
     reg [31:0] IR;
     always @(posedge clk) begin
         if (rst) IR <= 32'd0;
-        else if (state_fetch) IR <= instr;
+        else if (state_decode) IR <= instr;
     end
 
     // ------------------------------------------------------------------------
@@ -56,10 +70,13 @@ module riscv (
     wire is_r_instr = (opcode == 7'b0110011);
     wire is_i_instr = (opcode == 7'b0010011);
     wire is_b_instr = (opcode == 7'b1100011);
-    wire is_j_instr = (opcode == 7'b1101111);
     wire is_lui     = (opcode == 7'b0110111);
     wire is_auipc   = (opcode == 7'b0010111);
     wire is_u_instr = is_lui | is_auipc;
+
+    // Instrucciones de salto incondicional (Guía 6)
+    wire is_jal     = (opcode == 7'b1101111); // JAL  (tipo J)
+    wire is_jalr    = (opcode == 7'b1100111); // JALR (tipo I, funct3 = 000)
 
     // Señales específicas requeridas para GTKWave (Figura 17)
     wire is_add     = is_r_instr & (funct3 == 3'b000) & (~funct7_5); // Instrucción ADD
@@ -87,14 +104,17 @@ module riscv (
     // ------------------------------------------------------------------------
     // 4. Banco de Registros (Register File) y MUX de Escritura
     // ------------------------------------------------------------------------
-    // Permite escribir si es Tipo R, I, J, U o Carga (LOAD), excluyendo x0
-    wire wr_en = (is_r_instr | is_i_instr | is_j_instr | is_u_instr | is_load) & (rd != 5'd0);
+    // Permite escribir si es Tipo R, I, J (JAL), JALR, U o Carga (LOAD), excluyendo x0
+    wire wr_en = (is_r_instr | is_i_instr | is_jal | is_jalr | is_u_instr | is_load) & (rd != 5'd0);
     wire [31:0] src1_value, src2_value;
     wire [31:0] alu_out;
 
-    // MUX de selección de datos a escribir en el Register File (Figura 16)
-    wire [31:0] wdata = is_j_instr ? (pc + 32'd4) : 
-                        (is_load   ? ddata_in : alu_out);
+    // MUX de selección de datos a escribir en el Register File (Figura 18)
+    //  - LOAD         -> ddata_in (dato leído de la memoria / puerto de entrada)
+    //  - JAL o JALR   -> PC+4 (dirección de retorno)
+    //  - Cualquier otra instrucción -> salida de la ALU
+    wire [31:0] wdata = is_load            ? ddata_in :
+                        (is_jal | is_jalr) ? pc_plus_4 : alu_out;
 
     registerfile rf (
         .clk(clk),
@@ -112,8 +132,8 @@ module riscv (
     // ------------------------------------------------------------------------
     wire use_funct7_5 = (is_r_instr) | (is_i_instr & (funct3 == 3'b101));
     wire op_bit3 = use_funct7_5 & funct7_5;
-    
-    // Para R e I se toma {op_bit3, funct3}. Para LOAD, STORE, LUI, AUIPC se fuerza a 0000 (Suma)
+
+    // Para R e I se toma {op_bit3, funct3}. Para LOAD, STORE, LUI, AUIPC y JALR se fuerza a 0000 (Suma)
     wire [3:0] alu_op = (is_r_instr | is_i_instr) ? {op_bit3, funct3} : 4'b0000;
 
     // MUX Operando A de la ALU
@@ -122,10 +142,11 @@ module riscv (
 
     // MUX Operando B de la ALU
     wire [31:0] imm = is_u_instr ? u_imm :
-                      is_s_instr ? s_imm : i_imm; // i_imm sirve tanto para Tipo-I como para LOAD
+                      is_s_instr ? s_imm : i_imm; // i_imm sirve para Tipo-I, LOAD y JALR
 
+    // En JALR la ALU calcula rs1 + imm (dirección de destino del salto)
     wire [31:0] alu_b;
-    assign alu_b = (is_i_instr | is_load | is_s_instr | is_u_instr) ? imm : src2_value;
+    assign alu_b = (is_i_instr | is_load | is_s_instr | is_u_instr | is_jalr) ? imm : src2_value;
 
     alu cpu_alu (
         .a(alu_a),
@@ -160,10 +181,17 @@ module riscv (
                     (is_bge  & cond_bge)  |
                     (is_bltu & cond_bltu) |
                     (is_bgeu & cond_bgeu) |
-                    is_j_instr;
+                    is_jal;
 
-    wire [31:0] br_tgt_pc = pc + (is_j_instr ? j_imm : b_imm);
-    wire [31:0] next_pc   = taken_br ? br_tgt_pc : (pc + 32'd4);
+    // Destino de Jump (PC+imm_J) y de Branch (PC+imm_B)
+    wire [31:0] br_tgt_pc = pc + (is_jal ? j_imm : b_imm);
+
+    // Siguiente PC:
+    //  - JALR: rs1+imm, que ya calculó la ALU (el bit 0 se fuerza a 0 según la especificación)
+    //  - JAL o branch tomado: br_tgt_pc
+    //  - Otro caso: PC+4 (se reutiliza el registro pc_plus_4)
+    wire [31:0] next_pc = is_jalr  ? {alu_out[31:1], 1'b0} :
+                          taken_br ? br_tgt_pc : pc_plus_4;
 
     // Actualización del PC en el flanco de subida al finalizar el ciclo de ejecución
     always @(posedge clk) begin
